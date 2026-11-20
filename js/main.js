@@ -1,4 +1,5 @@
-let students = [];
+let students = JSON.parse(localStorage.getItem("students") || "[]");
+renderList();
 
 function showError(msg) {
   let box = document.getElementById("errorBox");
@@ -20,6 +21,7 @@ document.getElementById("addBtn").addEventListener("click", () => {
 
   let avg = (g1 + g2 + g3) / 3;
   students.push({ name, grades: [g1,g2,g3], attendance: att, avg: avg });
+  localStorage.setItem("students", JSON.stringify(students));
   renderList();
   document.getElementById("studentName").value = "";
 });
